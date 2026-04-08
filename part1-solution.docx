@@ -1,1 +1,10 @@
+Issues:
+  1. db.session.commit running twice: the 2 databases are linked using product_id and warehouse_id. If one commit is successful and second isn't,
+     there will be a problem in database where you have a product object with no inventory object linked
+  2. data=request.json not checked: there is no block of code that checks whether the json contains the data required. an error handling mechanism is required.
 
+Solutions:
+  1. running db.session.commit() only once. first run db.session.flush to get the product_id but the database is can still be rolled back. then when the inventory
+     is done, run db.session.commit()
+  2. data is checked against the required fields and if something is missing, the process is terminated.
+  3. also added a try block so that if some problem arises, the database will be rolled back.
