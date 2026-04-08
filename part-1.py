@@ -29,18 +29,3 @@ def create_product():
   except Exception as e:
       db.session.rollback()
       return jsonify({"error": str(e)}), 500
-
-# Issues:
-#   1. db.session.commit running twice: the 2 databases are linked using product_id and warehouse_id. If one commit is successful and second isn't,
-#      there will be a problem in database where you have a product object with no inventory object linked
-#   2. data=request.json not checked: there is no block of code that checks whether the json contains the data required. an error handling mechanism is required.
-# Your Tasks:
-
-# Identify Issues: List all problems you see with this code (technical and business logic)
-# Explain Impact: For each issue, explain what could go wrong in production
-# Provide Fixes: Write the corrected version with explanations
-# Additional Context (you may need to ask for more):
-# Products can exist in multiple warehouses
-# SKUs must be unique across the platform
-# Price can be decimal values
-# Some fields might be optional
