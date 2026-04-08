@@ -68,3 +68,8 @@ CREATE TABLE supplier_products (
     FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
+
+CREATE INDEX idx_warehouses_company ON warehouses(company_id);
+CREATE INDEX idx_inventory_product ON inventory(product_id);
+CREATE INDEX idx_inventory_warehouse ON inventory(warehouse_id);
+CREATE INDEX idx_inventory_history_inventory ON inventory_history(inventory_id);
